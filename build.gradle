@@ -1,0 +1,28 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.4.0'
+}
+
+repositories { 
+	mavenCentral() 
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir 'src'
+		}
+		resources {
+				srcDir 'src'
+			}
+	}
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'JetrisMain'
+    }
+}
