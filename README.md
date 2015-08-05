@@ -1,8 +1,10 @@
 # Jetris - A Java-Based Tetris Clone
 
+## TL;DR
+
 Jetris is a Java-based Tetris clone for the desktop. Jetris is focused on a fast gaming, so a game usually takes about 10 min.
 
-![](http://jetris.sourceforge.net/img/screen1.png)
+![](screenshot.png?raw=true)
 
 ### This Readme includes:
 
@@ -11,7 +13,7 @@ Jetris is a Java-based Tetris clone for the desktop. Jetris is focused on a fast
 3. Running JETRIS on Your System
 4. How to Play
 5. Scoring System
-6. Saving Your Old HiScores After Version Update
+6. Saving Your Old HiScores
 
 1. System Requirements
 ----------------------
@@ -51,7 +53,7 @@ To start JETRIS try one of the following options:
 java -jar JETRIS.jar
 ```
 
-3. How to Play
+4. How to Play
 --------------
 
 Use the following keys to play JETRIS:
@@ -66,7 +68,7 @@ Use the following keys to play JETRIS:
 * H - View HiScore
 * Esc - Exit
 
-4. Scoring System
+5. Scoring System
 -----------------
 
 * Clearing 1 Line at once, gives You 100 points + 5 x the current level
@@ -78,9 +80,7 @@ Use the following keys to play JETRIS:
 
 The current level is 20 (the highest level) and You clear 4 Lines at once, then You get 1600 + 80 x 20 = 2 x 1600 = 3200. So on level 20 you are making twice as much points as on level 0.
 
-5. Saving Your Old HiScores After Version Update
-------------------------------------------------
+6. Saving Your Old HiScores
+---------------------------
 
 Copy the old JETRIS.dat File to your new version of Jetris folder. 
-
-

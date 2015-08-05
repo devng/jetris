@@ -6,6 +6,9 @@ task wrapper(type: Wrapper) {
 	gradleVersion = '2.4.0'
 }
 
+// Keep this in sync with JetrisMainFrame.NAME
+version='1.2'
+
 repositories { 
 	mavenCentral() 
 }
@@ -18,3 +21,16 @@ jar {
         attributes 'Main-Class': 'JetrisMain'
     }
 }
+
+// Windows wrapper configuration to generate "jetris.exe" //
+task launch4jConfig(type: Copy) {
+    from 'src/main/resources/launch4j.xml'
+    into 'build/launch4j'
+    expand(
+            JAR_FILE: project.jar.archivePath,
+            VERSION: project.version,
+            ICON: file('src/main/resources/jetris.ico')
+    )
+}
+
+build.dependsOn 'launch4jConfig'

@@ -1,8 +1,6 @@
 package com.devng.jetris;
 /* MainFrame created on 14.09.2006 */
 
-import com.devng.jetris.io.PublishHiScore;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -13,7 +11,8 @@ import java.io.BufferedInputStream;
 
 public class JetrisMainFrame extends JFrame {
 
-    private static final String NAME = "JETRIS 1.1.1";
+    // Keep the version number in sync with build.gradle
+    private static final String NAME = "JETRIS 1.1.2";
     private static final int CELL_H = 24;
 
     private Font font;
@@ -54,7 +53,6 @@ public class JetrisMainFrame extends JFrame {
     private HelpDialog helpDialog;
 
     private JPanel hiScorePanel;
-    private PublishHandler pH;
 
     private class GridThread extends Thread {
 
@@ -191,8 +189,6 @@ public class JetrisMainFrame extends JFrame {
             }
         };
         addKeyListener(keyHandler);
-
-        pH = new PublishHandler();
 
         font = new Font("Dialog", Font.PLAIN, 12);
         tg = new TetrisGrid();
@@ -933,51 +929,7 @@ public class JetrisMainFrame extends JFrame {
         table.setEnabled(false);
 
         hiScorePanel.add(table, BorderLayout.CENTER);
-        JButton jb = new JButton("Publish HiScore Online");
-        jb.addActionListener(pH);
-
-        hiScorePanel.add(jb, BorderLayout.SOUTH);
     }
-
-
-    private class PublishHandler implements ActionListener {
-        public void actionPerformed(ActionEvent ae) {
-            JButton jb = (JButton) ae.getSource();
-            PublishThread pt = new PublishThread(jb);
-            pt.start();
-        }
-    }
-
-    private class PublishThread extends Thread {
-
-        private JButton but;
-
-        PublishThread(JButton source) {
-            super();
-            but = source;
-        }
-
-        public void run() {
-            but.setEnabled(false);
-            boolean b = false;
-            try {
-                for (int i = 0; i < tg.hiScore.length; i++) {
-                    PublishHiScore.publish(tg.hiScore[i]);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                b = true;
-                JOptionPane.showMessageDialog(hiScorePanel, "Could not publish HiScore online!\nTry again later!", "ERROR",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-            if (!b) {
-                JOptionPane.showMessageDialog(hiScorePanel, "Publishing HiScore was successfull :)", "HI SCORE",
-                        JOptionPane.INFORMATION_MESSAGE);
-            }
-            but.setEnabled(true);
-        }
-    }
-
 
     private class MenuHandler implements ActionListener {
 

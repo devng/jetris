@@ -1,3 +1,10 @@
+2015-08-06
+----------
+* JETRIS Version 1.2
+* Add Launch4J configuration
+* Remove the publish HiScores functionality, as it did not work
+* Remove the webapp source folder, since there is no web page anymore
+
 2015-08-05
 ----------
 * JETRIS Version 1.1.1
