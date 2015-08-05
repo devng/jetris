@@ -1,0 +1,50 @@
+div.leftcolbox { 
+	padding: 0 0 0px 0;
+	margin-left: 15px;
+	margin-bottom: 15px;
+	width: 170px;
+	background: url('img/leftBottom.png') no-repeat bottom #6488F7;
+	overflow: hidden;
+	}
+	
+div.leftcolboxtop { 
+	height: 10px;
+	width: 170px;
+	background: url('img/leftTop.png') no-repeat top;
+}
+
+.leftcolbox p {  
+	margin: 0 15px 12px 15px;
+	font-size: 11px;
+	line-height: 16px;
+	color: #fff;
+}
+
+.leftcolbox img { 
+	margin: 0 auto;
+}
+
+.leftcolbox h1 {  
+	font-family: Verdana, Arial, sans-serif;
+	margin: 0 15px 12px 15px;
+	font-weight: bold;
+	text-decoration : underline;
+	color: #fff;
+	letter-spacing: 0;
+	font-size: 11px;
+	line-height: 14px;	
+}
+
+#lftcol a:link, #lftcol a:visited {   
+	padding-left: 11px;
+	color: #fff;
+	text-decoration: none;
+	text-align: left
+}
+	
+#lftcol a:hover, #lftcol a:active {    
+	padding-left: 11px;
+	color: #9C0000;
+	text-decoration: none;
+	text-align: left
+}

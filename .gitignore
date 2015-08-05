@@ -1,12 +1,10 @@
-# Compiled source #
-###################
+# Compiled source
 build/
 bin/
 war/
 *.class
 
-# Eclipse/Gradle/Idea generated files #
-##################################
+# Eclipse/Gradle/Idea generated files
 .classpath
 .project
 .gradle/
@@ -16,8 +14,7 @@ war/
 *.iml
 .idea/
 
-# OS generated files #
-######################
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -25,3 +22,6 @@ war/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Jetris HiScore File
+JETRIS.DAT

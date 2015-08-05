@@ -10,16 +10,8 @@ repositories {
 	mavenCentral() 
 }
 
-sourceSets {
-	main {
-		java {
-			srcDir 'src'
-		}
-		resources {
-				srcDir 'src'
-			}
-	}
-}
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 jar {
     manifest {

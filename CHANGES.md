@@ -1,3 +1,13 @@
+2015-08-05
+----------
+* JETRIS Version 1.1.1
+* Use Gradle as a build system
+* Use the standard directory layout
+* Change the package name to com.devng.jetris
+* Adjust the documentation
+* Include the web page files in the repo
+* Small code adjustments
+
 2015-08-03
 ----------
 * Move the project from sourceforge.net to GitHub
