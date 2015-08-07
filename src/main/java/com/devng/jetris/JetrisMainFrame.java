@@ -11,8 +11,6 @@ import java.io.BufferedInputStream;
 
 public class JetrisMainFrame extends JFrame {
 
-    // Keep the version number in sync with build.gradle
-    private static final String NAME = "JETRIS 1.1.2";
     private static final int CELL_H = 24;
 
     private Font font;
@@ -119,7 +117,6 @@ public class JetrisMainFrame extends JFrame {
                         Font font = new Font(g.getFont().getFontName(), Font.BOLD, 24);
                         g.setFont(font);
                         g.drawString("GAME OVER", 47, 250);
-
                     } else if (isPause) {
                         time.setText("PAUSED");
                     } else if (count >= 1000) {
@@ -161,11 +158,11 @@ public class JetrisMainFrame extends JFrame {
     }
 
     public JetrisMainFrame() {
-        super(NAME);
+        super(GV.NAME + " " + GV.VERSION);
 
         SplashScreen sp = new SplashScreen();
 
-        setIconImage(loadImage("jetris16x16.png"));
+        setIconImage(loadImage(GV.IMG_FOLDER + "jetris16x16.png"));
 
         keyHandler = new KeyAdapter() {
 
@@ -244,18 +241,18 @@ public class JetrisMainFrame extends JFrame {
 
         JMenu mJetris = new JMenu();
         menu.add(mJetris);
-        mJetris.setText("Jetris");
-        mJetris.setMnemonic('J');
+        mJetris.setText("Game");
+        mJetris.setMnemonic('G');
         {
             jetrisRestart = new JMenuItem("Restart");
             mJetris.add(jetrisRestart);
-            setKeyAcceleratorMenu(jetrisRestart, 'R', 0);
+            setKeyAcceleratorMenu(jetrisRestart, 'R');
             jetrisRestart.addActionListener(mH);
             jetrisRestart.setMnemonic('R');
 
             jetrisPause = new JMenuItem("Pause");
             mJetris.add(jetrisPause);
-            setKeyAcceleratorMenu(jetrisPause, 'P', 0);
+            setKeyAcceleratorMenu(jetrisPause, 'P');
             jetrisPause.addActionListener(mH);
             jetrisPause.setMnemonic('P');
 
@@ -263,7 +260,7 @@ public class JetrisMainFrame extends JFrame {
 
             jetrisHiScore = new JMenuItem("HiScore...");
             mJetris.add(jetrisHiScore);
-            setKeyAcceleratorMenu(jetrisHiScore, 'H', 0);
+            setKeyAcceleratorMenu(jetrisHiScore, 'H');
             jetrisHiScore.addActionListener(mH);
             jetrisHiScore.setMnemonic('H');
 
@@ -271,7 +268,7 @@ public class JetrisMainFrame extends JFrame {
 
             jetrisExit = new JMenuItem("Exit");
             mJetris.add(jetrisExit);
-            setKeyAcceleratorMenu(jetrisExit, KeyEvent.VK_ESCAPE, 0);
+            setKeyAcceleratorMenu(jetrisExit, KeyEvent.VK_ESCAPE);
             jetrisExit.addActionListener(mH);
             jetrisExit.setMnemonic('X');
         }
@@ -281,9 +278,9 @@ public class JetrisMainFrame extends JFrame {
         mHelp.setText("Help");
         mHelp.setMnemonic('H');
         {
-            helpJetris = new JMenuItem("Jetris Help");
+            helpJetris = new JMenuItem("JETRIS Help");
             mHelp.add(helpJetris);
-            setKeyAcceleratorMenu(helpJetris, KeyEvent.VK_F1, 0);
+            setKeyAcceleratorMenu(helpJetris, KeyEvent.VK_F1);
             helpJetris.addActionListener(mH);
             helpJetris.setMnemonic('J');
 
@@ -294,8 +291,8 @@ public class JetrisMainFrame extends JFrame {
         }
     }
 
-    private void setKeyAcceleratorMenu(JMenuItem mi, int keyCode, int mask) {
-        KeyStroke ks = KeyStroke.getKeyStroke(keyCode, mask);
+    private void setKeyAcceleratorMenu(JMenuItem mi, int keyCode) {
+        KeyStroke ks = KeyStroke.getKeyStroke(keyCode, 0);
         mi.setAccelerator(ks);
     }
 
@@ -587,7 +584,7 @@ public class JetrisMainFrame extends JFrame {
             }
 
             for (int i = 0; i < 4; i++) {
-                fig[f.arrY[i] + f.offsetY][f.arrX[i] + f.offsetX].setBackground(f.getGolor());
+                fig[f.arrY[i] + f.offsetY][f.arrX[i] + f.offsetX].setBackground(f.getColor());
                 fig[f.arrY[i] + f.offsetY][f.arrX[i] + f.offsetX].setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
             }
             statFP.add(figP);
@@ -630,9 +627,8 @@ public class JetrisMainFrame extends JFrame {
     static Image loadImage(String imageName) {
         try {
             ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-            Image im = ImageIO.read(new BufferedInputStream(
+            return ImageIO.read(new BufferedInputStream(
                     classloader.getResourceAsStream(imageName)));
-            return im;
         } catch (Exception e) {
             e.printStackTrace(System.out);
             return null;
@@ -658,7 +654,7 @@ public class JetrisMainFrame extends JFrame {
                 String s;
 
                 do {
-                    s = JOptionPane.showInputDialog(this, "Enter Your Name...\nMust be between 1 and 10 charachters long", "New HiScore " + (tmp + 1) + ". Place", JOptionPane.PLAIN_MESSAGE);
+                    s = JOptionPane.showInputDialog(this, "Enter Your Name...\nMust be between 1 and 10 characters long", "New HiScore " + (tmp + 1) + ". Place", JOptionPane.PLAIN_MESSAGE);
                 } while (s != null && (s.length() < 1 || s.length() > 10));
 
                 if (s == null) {
@@ -682,7 +678,7 @@ public class JetrisMainFrame extends JFrame {
 
     private void paintNewPosition() {
         for (int j = 0; j < 4; j++) {
-            cells[f.arrY[j] + f.offsetY][f.arrX[j] + f.offsetX].setBackground(f.getGolor());
+            cells[f.arrY[j] + f.offsetY][f.arrX[j] + f.offsetX].setBackground(f.getColor());
             cells[f.arrY[j] + f.offsetY][f.arrX[j] + f.offsetX].setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         }
     }
@@ -736,7 +732,7 @@ public class JetrisMainFrame extends JFrame {
         }
 
         for (int j = 0; j < f.arrX.length; j++) {
-            next[f.arrY[j]][f.arrX[j]].setBackground(f.getGolor());
+            next[f.arrY[j]][f.arrX[j]].setBackground(f.getColor());
             next[f.arrY[j]][f.arrX[j]].setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         }
     }
@@ -860,13 +856,13 @@ public class JetrisMainFrame extends JFrame {
         if (about == null) setAboutPanel();
         JOptionPane.showMessageDialog(this, about, "ABOUT",
                 JOptionPane.PLAIN_MESSAGE,
-                new ImageIcon(loadImage("jetris.png")));
+                new ImageIcon(loadImage(GV.IMG_FOLDER + "jetris.png")));
     }
 
     private void setAboutPanel() {
         about = new JPanel();
         about.setLayout(new BoxLayout(about, BoxLayout.Y_AXIS));
-        JLabel jl = new JLabel("<HTML><B>" + NAME + "</B> Copyright (c) 2006 - 2015 Nikolay G. Georgiev</HTML>");
+        JLabel jl = new JLabel("<HTML><B>" + GV.NAME + " " + GV.VERSION + "</B> Copyright (c) 2006 - 2015 Nikolay G. Georgiev</HTML>");
         jl.setFont(font);
         about.add(jl);
         about.add(Box.createVerticalStrut(10));
@@ -874,16 +870,7 @@ public class JetrisMainFrame extends JFrame {
         jl = new JLabel("WEB PAGE:");
         jl.setFont(font);
         about.add(jl);
-        HTMLLink hl = new HTMLLink("http://jetris.sf.net", false);
-        hl.setFont(font);
-        about.add(hl);
-
-        about.add(Box.createVerticalStrut(10));
-
-        jl = new JLabel("PROJECT PAGE:");
-        jl.setFont(font);
-        about.add(jl);
-        hl = new HTMLLink("https://github.com/devng/jetris", false);
+        HTMLLink hl = new HTMLLink(GV.WEB_PAGE, false);
         hl.setFont(font);
         about.add(hl);
 
@@ -893,7 +880,7 @@ public class JetrisMainFrame extends JFrame {
         jl.setFont(font);
         about.add(jl);
         about.add(jl);
-        hl = new HTMLLink("http://opensource.org/licenses/MPL-2.0", false);
+        hl = new HTMLLink("https://www.mozilla.org/MPL/2.0/", false);
         hl.setFont(font);
         about.add(hl);
     }
@@ -903,7 +890,7 @@ public class JetrisMainFrame extends JFrame {
 
         JOptionPane.showMessageDialog(this, hiScorePanel, "HI SCORE",
                 JOptionPane.PLAIN_MESSAGE,
-                new ImageIcon(loadImage("jetris32x32.png")));
+                new ImageIcon(loadImage(GV.IMG_FOLDER + "jetris32x32.png")));
 
         hiScorePanel = null;
     }

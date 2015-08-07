@@ -61,5 +61,5 @@ public abstract class Figure {
 
     protected abstract int getGridVal();
 
-    protected abstract Color getGolor();
+    protected abstract Color getColor();
 }

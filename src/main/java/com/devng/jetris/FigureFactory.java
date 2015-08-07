@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class FigureFactory {
 
-    Random r;
+    private final Random r;
     private int[] counts;
     private int lastLastOne;
     private int lastOne;

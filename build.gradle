@@ -1,36 +1,58 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
+plugins {
+    id 'java'
+    id "edu.sc.seis.macAppBundle" version "2.1.1"
+    id 'eclipse'
+    id 'idea'
+}
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '2.4.0'
+	gradleVersion = '2.5'
 }
 
-// Keep this in sync with JetrisMainFrame.NAME
+// Keep this in sync with GV.VERSION
 version='1.2'
-
-repositories { 
-	mavenCentral() 
-}
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 jar {
     manifest {
-        attributes 'Main-Class': 'JetrisMain'
+        attributes 'Implementation-Title': 'JETRIS',
+                'Implementation-Version': version,
+                'Main-Class': "JetrisMain"
     }
 }
 
-// Windows wrapper configuration to generate "jetris.exe" //
+macAppBundle {
+    mainClassName = "JetrisMain"
+    icon = "src/main/resources/osx/jetris.icns"
+    bundleJRE = false
+    javaProperties.put("apple.laf.useScreenMenuBar", "true")
+}
+
+// Windows wrapper configuration to generate "jetris.exe"
 task launch4jConfig(type: Copy) {
-    from 'src/main/resources/launch4j.xml'
+    from 'src/main/resources/launch4j/launch4j.xml'
     into 'build/launch4j'
     expand(
             JAR_FILE: project.jar.archivePath,
             VERSION: project.version,
-            ICON: file('src/main/resources/jetris.ico')
+            ICON: file('src/main/resources/launch4j/jetris.ico')
     )
 }
 
-build.dependsOn 'launch4jConfig'
+task launch4j(type: Exec, dependsOn: [':jar', ':launch4jConfig']) {
+    def launch4jCfg = file('build/launch4j/launch4j.xml')
+    def isWindows = System.properties['os.name'].startsWith('Windows')
+    def launch4jDir = System.getenv('LAUNCH4J_HOME')
+
+    if (launch4jDir == null || !(new File(launch4jDir).exists())) {
+        throw new GradleException("'LAUNCH4J_HOME' not defined or invalid. Launch4j (http://launch4j.sourceforge.net) is required to generare the JETRIS Windows EXE file.")
+    }
+
+    if (isWindows) {
+        commandLine 'cmd', '/c', launch4jDir + "/launch4j.exe", launch4jCfg
+    } else {
+        commandLine launch4jDir + "/launch4j", launch4jCfg
+    }
+}

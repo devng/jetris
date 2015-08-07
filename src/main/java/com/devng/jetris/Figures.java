@@ -24,7 +24,7 @@ class FigureI extends Figure {
         return I;
     }
 
-    protected Color getGolor() {
+    protected Color getColor() {
         return COL_I;
     }
 }
@@ -99,7 +99,7 @@ class FigureT extends Figure {
         return T;
     }
 
-    protected Color getGolor() {
+    protected Color getColor() {
         return COL_T;
     }
 }
@@ -122,7 +122,7 @@ class FigureO extends Figure {
         return O;
     }
 
-    protected Color getGolor() {
+    protected Color getColor() {
         return COL_O;
     }
 }
@@ -197,7 +197,7 @@ class FigureL extends Figure {
         return L;
     }
 
-    protected Color getGolor() {
+    protected Color getColor() {
         return COL_L;
     }
 }
@@ -271,7 +271,7 @@ class FigureJ extends Figure {
         return J;
     }
 
-    protected Color getGolor() {
+    protected Color getColor() {
         return COL_J;
     }
 }
@@ -315,7 +315,7 @@ class FigureS extends Figure {
         return S;
     }
 
-    protected Color getGolor() {
+    protected Color getColor() {
         return COL_S;
     }
 }
@@ -359,7 +359,7 @@ class FigureZ extends Figure {
         return Z;
     }
 
-    protected Color getGolor() {
+    protected Color getColor() {
         return COL_Z;
     }
 }

@@ -1,9 +1,13 @@
-2015-08-06
+2015-08-07
 ----------
 * JETRIS Version 1.2
-* Add Launch4J configuration
+* Add Launch4J configuration and a new Gradle taks launch4j for generating an Windows exe file
+* Use a Gradle plugin to create MAC OS X app package and a dmg file
 * Remove the publish HiScores functionality, as it did not work
 * Remove the webapp source folder, since there is no web page anymore
+* Small code improvements
+* Update Gradle wrapper to version 2.5
+* Update the documentation
 
 2015-08-05
 ----------

@@ -7,12 +7,11 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 public class TetrisGrid implements Serializable {
 
-    static final String DAT_FILE = "JETRIS.DAT";
-
-    LinkedList<int[]> gLines;
+    List<int[]> gLines;
     private int lines;
     private int score;
     private int[] dropLines;
@@ -20,7 +19,7 @@ public class TetrisGrid implements Serializable {
     HiScore[] hiScore;
 
     TetrisGrid() {
-        gLines = new LinkedList<int[]>();
+        gLines = new LinkedList<>();
         for (int i = 0; i < 20; i++) {
             gLines.add(new int[10]);
         }
@@ -28,14 +27,14 @@ public class TetrisGrid implements Serializable {
         dropLines = new int[4];
 
         try {
-            hiScore = HiScore.load(DAT_FILE);
+            hiScore = HiScore.load(GV.DAT_FILE);
         } catch (Exception e) {
             hiScore = new HiScore[3];
             for (int i = 0; i < hiScore.length; i++) {
                 hiScore[i] = new HiScore();
                 hiScore[i].name = "<empty>";
             }
-            File f = new File(DAT_FILE);
+            File f = new File(GV.DAT_FILE);
             try {
                 HiScore.write(hiScore, f);
             } catch (Exception e1) {
@@ -49,13 +48,13 @@ public class TetrisGrid implements Serializable {
         for (int j = 0; j < f.arrX.length; j++) {
             if (f.arrY[j] + f.offsetY >= 20) {
                 f.setOffset(f.offsetXLast, f.offsetYLast);
-                addFiguretoGrid(f);
+                addFigureToGrid(f);
                 eliminateLines();
                 return true;
             }
             if (gLines.get(f.arrY[j] + f.offsetY)[f.arrX[j] + f.offsetX] != 0) {
                 f.setOffset(f.offsetXLast, f.offsetYLast);
-                addFiguretoGrid(f);
+                addFigureToGrid(f);
                 eliminateLines();
                 return true;
             }
@@ -77,7 +76,7 @@ public class TetrisGrid implements Serializable {
         }
     }
 
-    private void addFiguretoGrid(Figure f) {
+    private void addFigureToGrid(Figure f) {
         for (int j = 0; j < f.arrX.length; j++) {
             gLines.get(f.arrY[j] + f.offsetY)[f.arrX[j] + f.offsetX] = f.getGridVal();
         }
@@ -175,7 +174,6 @@ public class TetrisGrid implements Serializable {
                         hiScore[1] = s;
                         break;
                 }
-                ;
                 s.score = score;
                 s.lines = lines;
                 return i;
@@ -185,7 +183,7 @@ public class TetrisGrid implements Serializable {
     }
 
     void saveHiScore(String Name, int pos) {
-        File f = new File(DAT_FILE);
+        File f = new File(GV.DAT_FILE);
         try {
             hiScore[pos].name = Name;
             HiScore.write(hiScore, f);
@@ -197,8 +195,7 @@ public class TetrisGrid implements Serializable {
 
 
     public String toString() {
-
-        StringBuffer sb = new StringBuffer();
+        final StringBuffer sb = new StringBuffer();
         for (int[] arr : gLines) {
             for (int j = 0; j < arr.length; j++) {
                 sb.append(arr[j]);

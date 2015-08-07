@@ -1,4 +1,4 @@
 #!/bin/sh
 
-java -jar build/libs/jetris.jar
+java -jar build/libs/jetris-1.2.jar -Xdock:name="JETRIS"
 

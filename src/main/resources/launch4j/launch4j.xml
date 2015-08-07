@@ -3,8 +3,8 @@
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
   <jar>${JAR_FILE}</jar>
-  <outfile>jetris.exe</outfile>
-  <errTitle>Jetris Windows Wrapper</errTitle>
+  <outfile>JETRIS-${VERSION}.exe</outfile>
+  <errTitle>JETRIS Windows Wrapper</errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
   <priority>normal</priority>
@@ -15,11 +15,11 @@
   <manifest></manifest>
   <icon>${ICON}</icon>
   <versionInfo>
-    <fileVersion>${VERSION}.0</fileVersion>
+    <fileVersion>${VERSION}.0.0</fileVersion>
     <txtFileVersion>${VERSION}</txtFileVersion>
     <fileDescription>JETRIS</fileDescription>
     <copyright>JETRIS (C) 2006 - 2015 Nikolay G. Georgiev</copyright>
-    <productVersion>${VERSION}.0</productVersion>
+    <productVersion>${VERSION}.0.0</productVersion>
     <txtProductVersion>${VERSION}</txtProductVersion>
     <productName>JETRIS</productName>
     <internalName>jetris</internalName>
@@ -29,7 +29,7 @@
     <path></path>
     <bundledJre64Bit>false</bundledJre64Bit>
     <bundledJreAsFallback>false</bundledJreAsFallback>
-    <minVersion>1.6.0</minVersion>
+    <minVersion>1.7.0</minVersion>
     <maxVersion></maxVersion>
     <jdkPreference>preferJre</jdkPreference>
     <runtimeBits>64/32</runtimeBits>
