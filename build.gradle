@@ -47,7 +47,8 @@ task launch4j(type: Exec, dependsOn: [':jar', ':launch4jConfig']) {
     def launch4jDir = System.getenv('LAUNCH4J_HOME')
 
     if (launch4jDir == null || !(new File(launch4jDir).exists())) {
-        throw new GradleException("'LAUNCH4J_HOME' not defined or invalid. Launch4j (http://launch4j.sourceforge.net) is required to generare the JETRIS Windows EXE file.")
+       print "WARN: 'LAUNCH4J_HOME' not defined or invalid. Launch4j (http://launch4j.sourceforge.net) is required to generare the JETRIS Windows EXE file."
+       return
     }
 
     if (isWindows) {
