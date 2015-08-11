@@ -1,5 +1,7 @@
 # JETRIS - A Java-Based Tetris Clone
 
+[![Build Status](https://travis-ci.org/devng/jetris.svg?branch=master)](https://travis-ci.org/devng/jetris)
+
 ## TL;DR
 
 JETRIS is a Java-based Tetris clone for the desktop. JETRIS is focused on a fast gaming, so a game usually takes about 10 min.
