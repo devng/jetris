@@ -58,7 +58,7 @@ The generated exe file can be found in the folder _build/launch4j_.
 
 ### How to build a Mac OS APP and DMG
 The JETRIS Gradle build script uses [MacAppBundle Plugin](https://github.com/crotwell/gradle-macappbundle) to generate Mac OS X app packages _and_ a _dmg_ distribution file.
-This is done automatically with each Gradle build.
+This is done automatically on Mac OS X with each Gradle build.
 
 The generated app package can be found in the folder _build/macApp_ and the dmg file in _build/distributions_.
 

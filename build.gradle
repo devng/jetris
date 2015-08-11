@@ -57,3 +57,5 @@ task launch4j(type: Exec, dependsOn: [':jar', ':launch4jConfig']) {
         commandLine launch4jDir + "/launch4j", launch4jCfg
     }
 }
+
+createDmg.onlyIf { System.properties['os.name'].startsWith('Mac') }
